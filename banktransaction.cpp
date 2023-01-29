@@ -7,7 +7,7 @@ class bank
     string cust_name;
     int acc_no;
     string acc_type;
-    static int balance;
+    int balance=0;
 
     public:
     void create_acc(void);
@@ -19,7 +19,7 @@ class bank
         cout<<"Enter your Account Number: ";
         cin>>x;
         
-        cout<<"YOUR CURRENT BALANCE: "<<balance;
+        cout<<"YOUR CURRENT BALANCE: "<<balance<<"\n";
     }
     void acc_statement(void);
 
@@ -30,39 +30,43 @@ void bank::create_acc(void)
     int acc_type_info;
     
     cout<<"*****ACCOUNT CREATION*******"<<"\n";
-    cout<<"Enter your Full Name: ";
+    cout<<"Enter your Name: ";
     cin>>cust_name;
 
-    cout<<"Choose the account type you prefer: ";
-    cout<<"1.Savings account";
-    cout<<"2.Current account";
-    cout<<"3.Salary account";
-    cout<<"4.Fixed deposits account";
+    cout<<"Choose the account type you prefer: "<<"\n";
+    cout<<"1.Savings account"<<"\n";
+    cout<<"2.Current account"<<"\n";
+    cout<<"3.Salary account"<<"\n";
+    cout<<"4.Fixed deposits account"<<"\n";
     cin>>acc_type_info;
 
     if(acc_type_info==1)
     {
         acc_type="Savings account";
+        cout<<"You've successfully created a Saving's Account!!"<<"\n";
     }
 
     else if(acc_type_info==2)
     {
         acc_type="Current account";
+        cout<<"You've successfully created a Current Account!!"<<"\n";
     }
 
     else if(acc_type_info==3)
     {
         acc_type="Salary account";
+        cout<<"You've successfully created a Salary Account!!"<<"\n";
     }
 
     else if(acc_type_info==4)
     {
         acc_type="Fixed deposit account";
+        cout<<"You've successfully created a Fixed Deposit Account!!"<<"\n";
     }
     
     acc_no=(rand()+acc_type_info);
 
-    cout<<"Your Account Number is: "<<acc_no;
+    cout<<"Your Account Number is: "<<acc_no<<"\n";
 
     
 }
@@ -72,20 +76,18 @@ void bank::deposit(void)
     int dummy_deposit, deposit;
     int x;
 
-    cout<<"******DEPOSIT CASH**********";
+    cout<<"******DEPOSIT CASH**********"<<"\n";
     cout<<"Enter your Account Number: ";
     cin>>x;
-    cout<<"Enter the amount to be deposited: "<<"\n";
-    cin>>deposit;
 
     if(balance==0)
     {
-        cout<<"This is the initial deposit(a minimum of Rs. 500 is required)";
+        cout<<"This is the initial deposit(a minimum of Rs. 500 is required)"<<"\n";
         cout<<"Enter the amount to be deposited: "<<"\n";
         cin>>dummy_deposit;
         if (dummy_deposit<500)
         {
-            cout<<"INVALID ENTRY!!";
+            cout<<"INVALID ENTRY(minimum of 500 was required)!!"<<"\n";
         }
 
         else
@@ -98,7 +100,8 @@ void bank::deposit(void)
     {
         cout<<"Enter the amount to be deposited: "<<"\n";
         cin>>deposit;
-        balance=deposit+balance;
+        cout<<"You've succesfully deposited an amount of Rs. "<<deposit<<" in the Account!!"<<"\n";
+        balance=balance+deposit;
     }
 }
     
@@ -107,22 +110,30 @@ void bank::deposit(void)
 void bank::withdraw(void)
 {
     int with_cash;
-    int x;
+    int x, y;
     cout<<"Enter your Account Number: ";
     cin>>x;
     
     if(balance<500)
     {
-        cout<<"Transaction denied due to Inadequate Bank Balance!!!";
+        cout<<"Transaction denied due to Inadequate Bank Balance!!!"<<"\n";
     }
-
+    
     else
     {
         cout<<"Enter the amount to be withdrawn= ";
         cin>>with_cash;
-        cout<<"An amount of "<<with_cash<<" was successfully withdrawn!!";
-        balance=balance-with_cash;
-    
+        y=balance-with_cash;
+        
+        if(y<500)
+        {
+            cout<<"Transaction denied!!!(this withdrawal will reduce your balance to less than minimum amount required as per bank guidelines)"<<"\n";
+        }
+        else
+        {
+            cout<<"An amount of Rs."<<with_cash<<" was successfully withdrawn!!"<<"\n";
+            balance=balance-with_cash;
+        }
     }
 }
 
@@ -200,4 +211,6 @@ int main(){
             x=menu();
         }
     }
+
+    cout<<"THANK YOU FOR VISITING!!"<<"\n";
 }
