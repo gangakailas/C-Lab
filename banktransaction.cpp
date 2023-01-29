@@ -94,6 +94,7 @@ void bank::deposit(void)
         {
             deposit=dummy_deposit;
             balance=deposit;
+            cout<<"You've succesfully deposited an amount of Rs. "<<deposit<<" in the Account!!"<<"\n";
         }
     }
     else   
